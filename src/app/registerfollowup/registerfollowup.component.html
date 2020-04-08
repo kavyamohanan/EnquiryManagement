@@ -1,0 +1,38 @@
+<div class="bgcolor">
+<div class="user">
+    <header class="user__header">
+            <h1 class="user__title">Registration Follow Up</h1>
+    </header>
+    
+    <form class="form" [formGroup] = "regFollowForm" novalidate (ngSubmit)="onSubmit()">
+        
+        <div class="form__group">
+            <label>Register Id</label>
+            <input type="text" class="form__input" [(ngModel)]="registrationId" name="registrationId" formControlName="registrationId" readonly />
+        </div>
+        
+        <div class="form__group">
+            <label>Exam Date</label>
+            <input type="date" placeholder="Exam Date" id="examDate" class="form__input" formControlName="examDate" />
+        </div>
+        <div *ngIf="regFollowForm.controls['examDate'].invalid && (regFollowForm.controls['examDate'].dirty || regFollowForm.controls['examDate'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="regFollowForm.controls['examDate'].errors.required">
+            Exam Date is required.
+        </div>
+    </div>
+        
+        <div class="form__group">
+            <label>Room</label>
+            <select class="form__input" formControlName="resourceId" >
+                <option disabled>Select Room</option>
+                <option value="1">Room 1</option>
+                <option value="2">Room 2</option>
+                <option value="3">Room 3</option>
+            </select>
+        </div>
+        
+        <button class="btn" type="submit" [disabled]="regFollowForm.pristine || regFollowForm.invalid">Submit</button>
+    </form>
+</div>
+</div>

@@ -1,0 +1,44 @@
+<div class="main">
+    <div id="login">
+
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form [formGroup]="loginForm" id="login-form" class="form" (ngSubmit)="onLogin()">
+                            <h3 class="text-center text-info">Login</h3>
+                            <!--Username-->
+                            <div class="form-group">
+                                
+                                    <label for="username" class="text-info">Username:</label><br>
+                                    <p [ngClass]="{'has-error':isSubmitted && formControls.username.errors}">
+                                    <input type="text" name="username" formControlName="username" id="username"
+                                        class="form-control"></p>
+                            </div>
+                            <!--validation-->
+                            <div *ngIf="isSubmitted && formControls.username.errors" class="help-block">
+                                <div *ngIf=formControls.username.errors.required>Username is required</div>
+                            </div>
+                            <!--Password-->
+                           
+                            <div class="form-group">
+                                <label for="password" class="text-info">Password:</label><br>
+                                <p [ngClass]="{'has-error':isSubmitted && formControls.password.errors}">
+                                <input type="password" name="password" formControlName="password" id="password"
+                                    class="form-control"></p>
+                            </div>
+                            <!--validation-->
+                            <div *ngIf="isSubmitted&&formControls.password.errors" class="help-block">
+
+                                <div *ngIf="formControls.password.errors.required">Password is required</div>
+                            </div>
+                            <div class="form-group">
+                                <input class="btn btn-info btn-md" type="submit" value="Login">
+                            </div>
+                        </form>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>

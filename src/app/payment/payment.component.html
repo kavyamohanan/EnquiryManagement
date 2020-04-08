@@ -1,0 +1,85 @@
+<div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+            <h3>Welcome to</h3>
+            <p>IT Training</p>
+            <!--input type="submit" name="" value="Enquiry" /--><br />
+        </div>
+        <div class="col-md-9 register-right">
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                        aria-controls="home" aria-selected="true">Trainee</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" aria-controls="profile"
+                        aria-selected="false">Step 3</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <h3 class="register-heading">Payment</h3>
+
+                    
+                    <form [formGroup]="paymentForm" novalidate (ngSubmit)="onSubmit()">
+                        <div class="row register-form">
+                            <div class="col-md-6">
+
+                                <!--Registration Id-->
+                                <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                          <span class="input-group-text" id="inputGroup-sizing-default">Registration Id </span>
+                                        </div>
+                                <input type="text" class="form-control" formControlName="registrationId" [(ngModel)]="registrationId" readonly/>
+                            </div>
+                                <!--Mode of Payment -->
+                                <div class="form-group">
+                                    <select class="form-control" formControlName="modeOfPayment">
+                                        <option disabled value="">Payment Mode
+                                        </option>
+                                        <option value="Bank Draft">Bank Draft</option>
+                                        <option value="Online Transfer">Online Transfer</option>
+                                        <option value="Cheque">Cheque</option>
+                                    </select>
+                                </div>
+                                <div *ngIf="paymentForm.controls['modeOfPayment'].invalid && (paymentForm.controls['modeOfPayment'].dirty || paymentForm.controls['modeOfPayment'].touched)"
+                                class="alert alert-danger">
+                                <div *ngIf="paymentForm.controls['modeOfPayment'].errors.required">
+                                    Select Payment Mode
+                                </div>
+                            </div>
+
+                                <!--Transaction Id-->
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="transactionId" maxlength="8" placeholder="Transaction Id *"
+                                    autocomplete="new-password" pattern="^[a-zA-Z0-9]{8}$" #name>
+                                </div>
+                                <div *ngIf="paymentForm.controls['transactionId'].invalid && (paymentForm.controls['transactionId'].dirty || paymentForm.controls['transactionId'].touched)"
+                                    class="alert alert-danger">
+                                    <div *ngIf="paymentForm.controls['transactionId'].errors.required">
+                                        Id required.
+                                    </div>
+                                    <div *ngIf="paymentForm.controls['transactionId'].errors.pattern">
+                                        Invalid Entry 
+                                    </div>
+                                </div>
+                              
+                            <div class="form-group">
+                                <button type="submit" class="btnRegister" >
+                                  Register
+                                </button>
+                            </div>
+                        </div> 
+                    </div>    
+                   </form>
+                   
+                   
+            
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
