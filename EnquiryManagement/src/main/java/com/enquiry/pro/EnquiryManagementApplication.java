@@ -16,6 +16,9 @@ public class EnquiryManagementApplication {
 		FollowUPRegister follow = new FollowUPRegister();
 		System.out.println(follow.getFollowUpDate());
 		
+		Registration reg = new Registration();
+		System.out.println(reg.getPhoto());
+		
 	}
 
 }

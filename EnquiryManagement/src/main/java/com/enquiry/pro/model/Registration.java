@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.Temporal;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -24,7 +24,7 @@ public class Registration {
 	private Integer registrationId;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate registrationDate = LocalDate.now();;
+	private LocalDate registrationDate = LocalDate.now();
 
 	private String name;
 	private String address;
@@ -41,13 +41,14 @@ public class Registration {
 	@Column(unique = true)
 	private String email;
 
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn(name = "course_id")
-	private Course courseId;
+	private Course courseId;*/
+	private Integer courseId;
 	
 	
 	@Lob
-	private byte[] photo;
+	private byte[] photo = new byte[127];
 
 	private String status;
 
@@ -122,6 +123,7 @@ public class Registration {
 	}
 
 	public String getPhone() {
+		//photo[0]=1;
 		return phone;
 	}
 
@@ -153,13 +155,13 @@ public class Registration {
 		this.email = email;
 	}
 
-	public Course getCourseId() {
+	/*public Course getCourseId() {
 		return courseId;
 	}
 
 	public void setCourseId(Course courseId) {
 		this.courseId = courseId;
-	}
+	}*/
 
 	public byte[] getPhoto() {
 		return photo;
@@ -179,5 +181,15 @@ public class Registration {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	public Integer getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(Integer courseId) {
+		this.courseId = courseId;
+	}
+	
+	
 
 }

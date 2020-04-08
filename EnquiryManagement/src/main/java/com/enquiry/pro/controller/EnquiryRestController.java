@@ -1,8 +1,10 @@
 package com.enquiry.pro.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,11 +16,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.enquiry.pro.model.Coordinator;
 import com.enquiry.pro.model.Course;
 import com.enquiry.pro.model.FollowUPRegister;
 import com.enquiry.pro.model.MultipleQualification;
 import com.enquiry.pro.model.Payment;
 import com.enquiry.pro.model.Registration;
+import com.enquiry.pro.service.ICoordinatorSer;
 import com.enquiry.pro.service.ICourseService;
 import com.enquiry.pro.service.IFollowRegService;
 import com.enquiry.pro.service.IMultipleQualService;
@@ -29,6 +33,7 @@ import com.enquiry.pro.service.IRegisterService;
 @RestController
 @RequestMapping("/")
 public class EnquiryRestController {
+	
 
 	// instance for ICourse Service
 	@Autowired
@@ -101,5 +106,43 @@ public class EnquiryRestController {
 		return new ResponseEntity<List<FollowUPRegister>>(folRegSer.viewFollowUpReg(), HttpStatus.OK);
 	}
 
+	// update status of registration
+	@PutMapping("status/{registrationId}")
+	public void updateStatus(@PathVariable("registrationId") int registrationId) {
+
+		registerSer.statusUpdate(registrationId);
+
+	}
+
+	// search by date
+	@GetMapping("registers/{registrationDate}")
+	public ResponseEntity<List<Registration>> searchByDate(
+			@DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable("registrationDate") LocalDate registrationDate) {
+		return new ResponseEntity<List<Registration>>(registerSer.showNewRegisters(registrationDate), HttpStatus.OK);
+	}
 	
+	//login for coordinator
+	
+	@Autowired
+	private ICoordinatorSer coSer;
+	
+	@GetMapping("login/{username}&{password}")
+	public ResponseEntity<Coordinator> login(@PathVariable("username")String username,@PathVariable("password")String password){
+		
+		ResponseEntity<Coordinator> response = null;
+		Coordinator coord = coSer.findByLoginCo(username, password);
+		
+		if(username == null && password == null) {
+			
+			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		else {
+			response = new ResponseEntity<>(coord,HttpStatus.OK);
+			
+		}
+		return response;
+		
+	}
 }
+
+

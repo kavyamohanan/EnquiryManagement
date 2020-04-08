@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -15,7 +16,7 @@ public class Payment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer paymentId;
 	
-	/*@OneToOne
+	/*@ManyToOne
 	@JoinColumn(name="registrationId")
 	private Registration registrationId;*/
 	private Integer registrationId;
@@ -44,7 +45,15 @@ public class Payment {
 	public void setRegistrationId(Registration registrationId) {
 		this.registrationId = registrationId;
 	}*/
+	
+	public Integer getRegistrationId() {
+		return registrationId;
+	}
 
+	public void setRegistrationId(Integer registrationId) {
+		this.registrationId = registrationId;
+	}
+	
 	public String getModeOfPayment() {
 		return modeOfPayment;
 	}
@@ -61,12 +70,5 @@ public class Payment {
 		this.transactionId = transactionId;
 	}
 
-	public Integer getRegistrationId() {
-		return registrationId;
-	}
-
-	public void setRegistrationId(Integer registrationId) {
-		this.registrationId = registrationId;
-	}
-
+	
 }

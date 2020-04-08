@@ -1,6 +1,6 @@
 package com.enquiry.pro.model;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,15 +18,16 @@ public class MultipleQualification {
 	
 	/*@ManyToOne
 	@JoinColumn(name="qualificationId")
-	private Qualification qualification;
+	private Qualification qualificationId;
 	
 	@ManyToOne
 	@JoinColumn(name="registrationId")
-	private Registration registration;*/
+	private Registration registrationId;*/
 	private Integer qualificationId;
-	private Integer  registrationId;
+	private Integer  registrationId; 
 	
-	private Double mark;
+	private String institution;
+	private Integer mark;
 	private Integer yearOfPass;
 	
 	//default constructor
@@ -44,22 +45,22 @@ public class MultipleQualification {
 	}
 
 	/*public Qualification getQualification() {
-		return qualification;
+		return qualificationId;
 	}
 
-	public void setQualification(Qualification qualification) {
-		this.qualification = qualification;
+	public void setQualification(Qualification qualificationId) {
+		this.qualificationId = qualificationId;
 	}
 
 	public Registration getRegistration() {
-		return registration;
+		return registrationId;
 	}
 
-	public void setRegistration(Registration registration) {
-		this.registration = registration;
+	public void setRegistration(Registration registrationId) {
+		this.registrationId = registrationId;
 	}*/
 
-	public Double getMark() {
+	public Integer getMark() {
 		return mark;
 	}
 
@@ -79,7 +80,7 @@ public class MultipleQualification {
 		this.registrationId = registrationId;
 	}
 
-	public void setMark(Double mark) {
+	public void setMark(Integer mark) {
 		this.mark = mark;
 	}
 
@@ -89,6 +90,14 @@ public class MultipleQualification {
 
 	public void setYearOfPass(Integer yearOfPass) {
 		this.yearOfPass = yearOfPass;
+	}
+
+	public String getInstitution() {
+		return institution;
+	}
+
+	public void setInstitution(String institution) {
+		this.institution = institution;
 	}
 		
 }

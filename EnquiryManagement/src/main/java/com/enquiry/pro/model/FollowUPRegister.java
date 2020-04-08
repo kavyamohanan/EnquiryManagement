@@ -22,7 +22,7 @@ public class FollowUPRegister {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate followUpDate = LocalDate.now();
 	
-	private Integer coordinatorId;
+	//private Integer coordinatorId;
 	private Integer resourceId;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -57,13 +57,7 @@ public class FollowUPRegister {
 		this.followUpDate = followUpDate;
 	}
 
-	public Integer getCoordinatorId() {
-		return coordinatorId;
-	}
-
-	public void setCoordinatorId(Integer coordinatorId) {
-		this.coordinatorId = coordinatorId;
-	}
+	
 
 	public Integer getResourceId() {
 		return resourceId;

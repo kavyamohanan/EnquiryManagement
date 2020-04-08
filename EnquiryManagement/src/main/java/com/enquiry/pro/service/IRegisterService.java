@@ -1,5 +1,6 @@
 package com.enquiry.pro.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.enquiry.pro.model.Registration;
@@ -9,6 +10,10 @@ public interface IRegisterService {
 	public Registration addRegister(Registration register);
 	public List<Registration> listRegistration();
 	
-	//public String updateStatus(int registrationId);
+	public void statusUpdate(int registrationId);
+	public List<Registration> showNewRegisters(LocalDate registrationDate);
+	
+	public void updateRegId(Integer registrationId);
+	
 
 }
