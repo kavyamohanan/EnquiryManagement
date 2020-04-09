@@ -74,7 +74,6 @@ export class PhotoComponent implements OnInit {
             );
 
             console.log("Completed");
-            //this.toastr.success('Image Uploaded', 'Enquiry Management');
             
             this.gotoHome();
 
