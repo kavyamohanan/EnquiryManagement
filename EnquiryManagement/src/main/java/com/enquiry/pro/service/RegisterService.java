@@ -53,18 +53,6 @@ public class RegisterService implements IRegisterService{
 	}
 
 
-	@Autowired
-	private IPhotoRepository photoRepo;
-	//adding registration id in photo
-	@Transactional
-	@Override
-	public void updateRegId(Integer registrationId) {
-		photoRepo.updateReg(registrationId);	
-	}
-
-
-	
-	
 	
 
 }

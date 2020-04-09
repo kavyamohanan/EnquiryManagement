@@ -13,7 +13,6 @@ public interface IRegisterService {
 	public void statusUpdate(int registrationId);
 	public List<Registration> showNewRegisters(LocalDate registrationDate);
 	
-	public void updateRegId(Integer registrationId);
 	
 
 }

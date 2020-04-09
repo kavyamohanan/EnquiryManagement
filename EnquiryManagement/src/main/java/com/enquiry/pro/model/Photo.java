@@ -23,6 +23,7 @@ public class Photo {
     @Column(name = "type")
     private String type;
     
+    @Column(name = "registration_id")
     private Integer registrationId;
     
 
@@ -37,20 +38,25 @@ public class Photo {
         this.pic = pic;
     }
    
-	public Photo(Integer registrationId) {
+	
+	//constructor
+	public Photo(String name, String type, byte[] pic,Integer registrationId) {
 		
+		this.name = name;
+		this.type = type;
 		this.registrationId = registrationId;
+		this.pic = pic;
 	}
-
 
 
 	public Integer getRegistrationId() {
 		return registrationId;
 	}
 
+
 	public void setRegistrationId(Integer registrationId) {
 		this.registrationId = registrationId;
 	}
-    
-    
+
+
 }
