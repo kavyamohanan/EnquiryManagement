@@ -9,6 +9,7 @@ import com.enquiry.pro.model.Photo;
 
 public interface IPhotoRepository extends JpaRepositoryImplementation<Photo, Integer>{
 
+	//adding foreign key to photo table
 	@Modifying
 	 @Query("update Photo p set p.registrationId=?1 where p.id = (select (max(p.id)))")
 	//@Query("update Photo set registrationId=?1 ORDER BY id desc limit 1")
