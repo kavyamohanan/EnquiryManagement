@@ -21,7 +21,7 @@ export class PhotoComponent implements OnInit {
   convertedImage: any;
   //for reg id
   registrationId:number;
-  photoForm:FormGroup;
+
 
   constructor(private httpClient:HttpClient,private route:ActivatedRoute,
               private enquirySer:EnquiryService,
@@ -51,51 +51,38 @@ export class PhotoComponent implements OnInit {
  // This part is for uploading
  onUpload() {
 
-
   const uploadData = new FormData(); 
+  //passing registrationId as json value
+  uploadData.append('registrationId', JSON.stringify(this.registrationId));
+  //uploadData.append('registrationId',this.registrationId);
+  
   uploadData.append('myFile', this.selectedFile, this.selectedFile.name);
-
+  
 
   this.httpClient.post('http://localhost:8081/check/upload/', uploadData)
   .subscribe(
                res => {console.log(res);
                        this.receivedImageData = res;
                        this.base64Data = this.receivedImageData.pic;
-                       this.convertedImage = 'data:image/jpeg;base64,' + this.base64Data; },
-               err => console.log('Error Occured during saving: ' + err)
+                       this.convertedImage = 'data:image/jpeg;base64,' + this.base64Data;
+                       this.toastr.success('Image Uploaded', 'Enquiry Management');
+                       //this.toastr.error('Upload Failed, Try again!', 'Enquiry Management');
+                      },
+               err => {console.log('Error Occured during saving: ' + err);
+
+            }
             );
 
             console.log("Completed");
-            this.toastr.success('Image Uploaded', 'Enquiry Management');
+            //this.toastr.success('Image Uploaded', 'Enquiry Management');
+            
+            this.gotoHome();
 
-            //this.createForm();
 
  }
 
-//for updating regId
-/*createForm(){
-
-  this.photoForm = this.formBuilder.group({
-
-  registrationId:['',Validators.required]
-
-  });
-  this.saveAll();
-}*/
-
- saveAll(){
-
-  this.enquirySer.photoIdUpd(this.registrationId).subscribe(data => console.log(data),
-    error => console.log(error));
-
-   // this.enquiryService.regStatusUpd(this.registrationId);
-    console.log("hello" +this.registrationId);
-
-    this.toastr.success('Registration Completed Successfully', 'Enquiry Management');
-    this.gotoHome();
-  }
-
   gotoHome(){
+    this.toastr.success('Registration Completed Successfully', 'Enquiry Management');
     
     this.router.navigate(['']);
   }

@@ -1,7 +1,12 @@
 <div class="imagede">
     <h3>Uploading Your Image</h3>
     <hr>
-   
+     <!--Registration Id-->
+ <div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">Registration Id </span>
+    </div><input type="text" class="form-control" [(ngModel)]="registrationId" readonly style="margin-right:80%" />
+</div>
     <div> 
         <input type="file" (change)="onFileChanged($event)">
         <img [src]="imgURL" height="200" *ngIf="imgURL">
@@ -14,15 +19,10 @@
 
 
 
- <!--Registration Id-->
- <div class="input-group mb-3">
-    <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default">Registration Id </span>
-    </div><input type="text" class="form-control" [(ngModel)]="registrationId" readonly style="margin-right:80%" />
-</div>
-<div class="btnfinish">
+
+<!--div class="btnfinish">
     <button class="btn btn-info" (click)="saveAll()" type="submit">Finish</button>
-</div>
+</div-->
 
 
 <!--p>
